@@ -1,14 +1,10 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Letter 💌</title>
+    <title>6 Months of Love 💖</title>
     <style>
-        /* Background */
         body {
             display: flex;
             justify-content: center;
@@ -16,23 +12,43 @@
             height: 100vh;
             background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
-        /* Envelope Container */
+        .container {
+            text-align: center;
+        }
+
+        .open-btn, .yes-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .open-btn:hover, .yes-btn:hover {
+            background-color: #c0392b;
+        }
+
         .envelope {
             position: relative;
             width: 300px;
             height: 200px;
             background: #e74c3c;
             border-radius: 10px;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             cursor: pointer;
         }
 
-        /* Envelope Top Flap */
         .envelope::before {
             content: "";
             position: absolute;
@@ -45,22 +61,21 @@
             transition: transform 0.5s;
         }
 
-        /* Letter Inside */
         .letter {
             position: absolute;
-            width: 260px;
-            height: 160px;
+            width: 280px;
+            height: 180px;
             background: white;
             padding: 15px;
             text-align: center;
             font-size: 14px;
-            border-radius: 5px;
+            border-radius: 10px;
             transform: translateY(50px);
-            transition: transform 0.5s;
+            transition: transform 0.5s, opacity 0.5s;
             opacity: 0;
+            overflow-y: auto;
         }
 
-        /* When clicked, show the letter */
         .envelope.open::before {
             transform: rotateX(180deg);
         }
@@ -69,25 +84,61 @@
             transform: translateY(-30px);
             opacity: 1;
         }
+
+        .proposal {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="envelope" onclick="openEnvelope()">
-        <div class="letter">
-            <p><b>Mogguda😘,</b></p>
-            <p>Today, we’re celebrating 6 months of our never-ending love, and I can’t even put into words how happy I am! Having you by my side makes me feel like I hold the greatest treasure in the world, making me the richest and happiest person alive. 🫶🏻</p>
-            <p>I want every lifetime, in every universe, to be spent with you, creating beautiful memories together. 🫂</p>
-            <p>You are the best thing that has ever happened to me, and I will never stop loving you. 🥺</p>
-            <p><b>I love you sooooo much, nana! ♥️</b></p>
+    <div class="container">
+        <button class="open-btn" onclick="showEnvelope()">Open 💌</button>
+
+        <div class="envelope" onclick="openEnvelope()">
+            <div class="letter">
+                <p><b>Mogguda😘,</b></p>
+                <p>Today, we’re celebrating 6 months of our never-ending love, and I can’t even put into words how happy I am! Having you by my side makes me feel like I hold the greatest treasure in the world, making me the richest and happiest person alive. 🫶🏻</p>
+                <p>I want every lifetime, in every universe, to be spent with you, creating beautiful memories together. 🫂</p>
+                <p>You are the best thing that has ever happened to me, and I will never stop loving you. 🥺</p>
+                <p><b>I love you sooooo much, nana! ♥️</b></p>
+            </div>
+        </div>
+
+        <div class="proposal" id="proposal">
+            <p>💍 Will you marry me? 💖</p>
+            <button class="yes-btn" onclick="showFinalMessage()">Yes 💞</button>
+        </div>
+
+        <div class="proposal" id="finalMessage" style="display:none;">
+            <p>💖 You just made me the happiest person in the universe! 💖</p>
         </div>
     </div>
 
     <script>
+        function showEnvelope() {
+            document.querySelector(".open-btn").style.display = "none";
+            document.querySelector(".envelope").style.display = "flex";
+        }
+
         function openEnvelope() {
-            document.querySelector(".envelope").classList.toggle("open");
+            const envelope = document.querySelector(".envelope");
+            envelope.classList.toggle("open");
+            setTimeout(() => {
+                document.getElementById("proposal").style.display = "block";
+            }, 1000);
+        }
+
+        function showFinalMessage() {
+            document.getElementById("proposal").style.display = "none";
+            document.getElementById("finalMessage").style.display = "block";
         }
     </script>
 
 </body>
 </html>
+
